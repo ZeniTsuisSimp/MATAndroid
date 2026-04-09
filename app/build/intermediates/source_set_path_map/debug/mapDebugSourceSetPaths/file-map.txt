@@ -1,0 +1,69 @@
+com.mdt.android.app-customview-poolingcontainer-1.0.0-0 C:\Users\sanja\.gradle\caches\8.13\transforms\00e8933adb4680a961319ddcbb001558\transformed\customview-poolingcontainer-1.0.0\res
+com.mdt.android.app-lifecycle-viewmodel-release-1 C:\Users\sanja\.gradle\caches\8.13\transforms\066aa91cd4bcf575170e7e10237f980a\transformed\lifecycle-viewmodel-release\res
+com.mdt.android.app-ui-graphics-release-2 C:\Users\sanja\.gradle\caches\8.13\transforms\0e84aab8f75f93d7ab01de38a6008aa7\transformed\ui-graphics-release\res
+com.mdt.android.app-material-1.12.0-3 C:\Users\sanja\.gradle\caches\8.13\transforms\10f66ae52ae58aa8b222254d45fff894\transformed\material-1.12.0\res
+com.mdt.android.app-appcompat-1.6.1-4 C:\Users\sanja\.gradle\caches\8.13\transforms\1161a074a02a405a2a4ed1f8c158837b\transformed\appcompat-1.6.1\res
+com.mdt.android.app-transition-1.5.0-5 C:\Users\sanja\.gradle\caches\8.13\transforms\16558ec63608bae1af1106c965859316\transformed\transition-1.5.0\res
+com.mdt.android.app-navigation-common-2.8.0-6 C:\Users\sanja\.gradle\caches\8.13\transforms\28a098e2bccff8111253046466f4be5b\transformed\navigation-common-2.8.0\res
+com.mdt.android.app-savedstate-ktx-1.2.1-7 C:\Users\sanja\.gradle\caches\8.13\transforms\2b024e32293c7733c8ec2d97fce13704\transformed\savedstate-ktx-1.2.1\res
+com.mdt.android.app-navigation-common-ktx-2.8.0-8 C:\Users\sanja\.gradle\caches\8.13\transforms\2fae545642cd3496e432bcea045ad285\transformed\navigation-common-ktx-2.8.0\res
+com.mdt.android.app-material-ripple-release-9 C:\Users\sanja\.gradle\caches\8.13\transforms\303883dd6ac7b53ba8b0c21e36a728fd\transformed\material-ripple-release\res
+com.mdt.android.app-ui-geometry-release-10 C:\Users\sanja\.gradle\caches\8.13\transforms\33ad432abc87cc812a00290e9137f7de\transformed\ui-geometry-release\res
+com.mdt.android.app-navigation-runtime-ktx-2.8.0-11 C:\Users\sanja\.gradle\caches\8.13\transforms\3b058135ab3b8c650d928a7ebf724a99\transformed\navigation-runtime-ktx-2.8.0\res
+com.mdt.android.app-emoji2-1.3.0-12 C:\Users\sanja\.gradle\caches\8.13\transforms\42bef41ca8d5ecf31afd349ba05334bb\transformed\emoji2-1.3.0\res
+com.mdt.android.app-core-runtime-2.2.0-13 C:\Users\sanja\.gradle\caches\8.13\transforms\45f1c5ff7c2f55835f388c1b5870ff0c\transformed\core-runtime-2.2.0\res
+com.mdt.android.app-activity-ktx-1.9.2-14 C:\Users\sanja\.gradle\caches\8.13\transforms\47a6c3aed3052cd434ba97ea257aeaa4\transformed\activity-ktx-1.9.2\res
+com.mdt.android.app-foundation-layout-release-15 C:\Users\sanja\.gradle\caches\8.13\transforms\489f0676d264f275a6ce1f98176393c3\transformed\foundation-layout-release\res
+com.mdt.android.app-lifecycle-runtime-ktx-release-16 C:\Users\sanja\.gradle\caches\8.13\transforms\6976405ef0b361203c814d07b96eb3ec\transformed\lifecycle-runtime-ktx-release\res
+com.mdt.android.app-animation-release-17 C:\Users\sanja\.gradle\caches\8.13\transforms\6d787921b2efc0dd7cb4d0f0be00c861\transformed\animation-release\res
+com.mdt.android.app-navigation-runtime-2.8.0-18 C:\Users\sanja\.gradle\caches\8.13\transforms\739f96a217a5048453016d1d517ff6e9\transformed\navigation-runtime-2.8.0\res
+com.mdt.android.app-foundation-release-19 C:\Users\sanja\.gradle\caches\8.13\transforms\74ece2b889c03207f1b2107cd9bdc568\transformed\foundation-release\res
+com.mdt.android.app-profileinstaller-1.3.1-20 C:\Users\sanja\.gradle\caches\8.13\transforms\754d8c1c7ad266bcf29d91871085cca3\transformed\profileinstaller-1.3.1\res
+com.mdt.android.app-animation-core-release-21 C:\Users\sanja\.gradle\caches\8.13\transforms\79c4fc2a68ff30f937b2819c533847d1\transformed\animation-core-release\res
+com.mdt.android.app-material-release-22 C:\Users\sanja\.gradle\caches\8.13\transforms\82c1d769d9ebe752a9b46b2d18021e41\transformed\material-release\res
+com.mdt.android.app-navigation-compose-2.8.0-23 C:\Users\sanja\.gradle\caches\8.13\transforms\87278ffc68a1b80e0d72a6c2347015a5\transformed\navigation-compose-2.8.0\res
+com.mdt.android.app-emoji2-views-helper-1.3.0-24 C:\Users\sanja\.gradle\caches\8.13\transforms\8905a6d478aa7b18fd3c8157e0610a5c\transformed\emoji2-views-helper-1.3.0\res
+com.mdt.android.app-activity-1.9.2-25 C:\Users\sanja\.gradle\caches\8.13\transforms\8ae40118bc33e018ba4d1fa02dc0ba8f\transformed\activity-1.9.2\res
+com.mdt.android.app-ui-util-release-26 C:\Users\sanja\.gradle\caches\8.13\transforms\8cebb184c77e5b02611caf1244ba9ad2\transformed\ui-util-release\res
+com.mdt.android.app-material-icons-core-release-27 C:\Users\sanja\.gradle\caches\8.13\transforms\8ece6dea5bc33a23fc3ed0f854aff956\transformed\material-icons-core-release\res
+com.mdt.android.app-recyclerview-1.1.0-28 C:\Users\sanja\.gradle\caches\8.13\transforms\90c3fde99b1d3dfe31c0d1868535b85c\transformed\recyclerview-1.1.0\res
+com.mdt.android.app-drawerlayout-1.1.1-29 C:\Users\sanja\.gradle\caches\8.13\transforms\94cc8762de03248694fcb8c837f54f0b\transformed\drawerlayout-1.1.1\res
+com.mdt.android.app-constraintlayout-2.0.1-30 C:\Users\sanja\.gradle\caches\8.13\transforms\9959949fce677326136e17c49f88c870\transformed\constraintlayout-2.0.1\res
+com.mdt.android.app-lifecycle-runtime-compose-release-31 C:\Users\sanja\.gradle\caches\8.13\transforms\9d2653e296842c3198a569a8ce0e8500\transformed\lifecycle-runtime-compose-release\res
+com.mdt.android.app-material-icons-extended-release-32 C:\Users\sanja\.gradle\caches\8.13\transforms\a50920949aabba680738e011c90c6fb3\transformed\material-icons-extended-release\res
+com.mdt.android.app-startup-runtime-1.1.1-33 C:\Users\sanja\.gradle\caches\8.13\transforms\a521e8af89b3e9179a6f19dbcc4aac87\transformed\startup-runtime-1.1.1\res
+com.mdt.android.app-savedstate-1.2.1-34 C:\Users\sanja\.gradle\caches\8.13\transforms\a56f46880ab8416653c58fed3ced5972\transformed\savedstate-1.2.1\res
+com.mdt.android.app-ui-unit-release-35 C:\Users\sanja\.gradle\caches\8.13\transforms\a8646ab40a5ddc5ddcf41340383c5157\transformed\ui-unit-release\res
+com.mdt.android.app-fragment-1.3.6-36 C:\Users\sanja\.gradle\caches\8.13\transforms\a9e9191028f84f3ecbd58eb3bfa8fc7d\transformed\fragment-1.3.6\res
+com.mdt.android.app-ui-test-manifest-1.7.0-37 C:\Users\sanja\.gradle\caches\8.13\transforms\ae5b7df66663322d1780e22b4a5c2ca6\transformed\ui-test-manifest-1.7.0\res
+com.mdt.android.app-runtime-saveable-release-38 C:\Users\sanja\.gradle\caches\8.13\transforms\b07f61c71ffbb8a2cf9b0ea69b62566c\transformed\runtime-saveable-release\res
+com.mdt.android.app-lifecycle-viewmodel-ktx-2.8.4-39 C:\Users\sanja\.gradle\caches\8.13\transforms\b17db21524db6d06df89a1104ed6a70c\transformed\lifecycle-viewmodel-ktx-2.8.4\res
+com.mdt.android.app-ui-tooling-data-release-40 C:\Users\sanja\.gradle\caches\8.13\transforms\bbdc57f691db52f5b83773e2e2247e6f\transformed\ui-tooling-data-release\res
+com.mdt.android.app-core-ktx-1.13.1-41 C:\Users\sanja\.gradle\caches\8.13\transforms\bfb95d56d4e3fbd6c155a5e0e36317bb\transformed\core-ktx-1.13.1\res
+com.mdt.android.app-ui-tooling-preview-release-42 C:\Users\sanja\.gradle\caches\8.13\transforms\c1ae80226d0b8709c882a41c25a0d7a0\transformed\ui-tooling-preview-release\res
+com.mdt.android.app-cardview-1.0.0-43 C:\Users\sanja\.gradle\caches\8.13\transforms\c9d00fe7ab8329b60c295aec2db07601\transformed\cardview-1.0.0\res
+com.mdt.android.app-annotation-experimental-1.4.1-44 C:\Users\sanja\.gradle\caches\8.13\transforms\ce1715a25232993b9dbc4a6cbc803c2d\transformed\annotation-experimental-1.4.1\res
+com.mdt.android.app-ui-text-release-45 C:\Users\sanja\.gradle\caches\8.13\transforms\d4e280ef27f47946cfd26f60dc19b1d0\transformed\ui-text-release\res
+com.mdt.android.app-core-1.13.1-46 C:\Users\sanja\.gradle\caches\8.13\transforms\d5a39cbafae569593cfdc984b2662bae\transformed\core-1.13.1\res
+com.mdt.android.app-lifecycle-runtime-release-47 C:\Users\sanja\.gradle\caches\8.13\transforms\d79038436a3ef8927541cb2d7806cdb4\transformed\lifecycle-runtime-release\res
+com.mdt.android.app-runtime-release-48 C:\Users\sanja\.gradle\caches\8.13\transforms\dc338e29d15f9928c73d7fef35267163\transformed\runtime-release\res
+com.mdt.android.app-lifecycle-viewmodel-savedstate-2.8.4-49 C:\Users\sanja\.gradle\caches\8.13\transforms\e3917359f005a95c54510cabb5d92596\transformed\lifecycle-viewmodel-savedstate-2.8.4\res
+com.mdt.android.app-ui-release-50 C:\Users\sanja\.gradle\caches\8.13\transforms\e474e2e9fc721e22f0214ebff8e89ff6\transformed\ui-release\res
+com.mdt.android.app-lifecycle-process-2.8.4-51 C:\Users\sanja\.gradle\caches\8.13\transforms\e50c3957e157dedf0c03f06194d37127\transformed\lifecycle-process-2.8.4\res
+com.mdt.android.app-lifecycle-livedata-2.8.4-52 C:\Users\sanja\.gradle\caches\8.13\transforms\e737260016b74de1488dcbea8cdceb98\transformed\lifecycle-livedata-2.8.4\res
+com.mdt.android.app-lifecycle-livedata-core-2.8.4-53 C:\Users\sanja\.gradle\caches\8.13\transforms\ea55c37d0a5fe7557947b9ef90946183\transformed\lifecycle-livedata-core-2.8.4\res
+com.mdt.android.app-lifecycle-viewmodel-compose-release-54 C:\Users\sanja\.gradle\caches\8.13\transforms\eb2bf4fc66e8af417bd84fb3a6c877dd\transformed\lifecycle-viewmodel-compose-release\res
+com.mdt.android.app-material3-release-55 C:\Users\sanja\.gradle\caches\8.13\transforms\eb50e2e6170f3f57aa4232b4ab47113d\transformed\material3-release\res
+com.mdt.android.app-coordinatorlayout-1.1.0-56 C:\Users\sanja\.gradle\caches\8.13\transforms\ec46d69e7cd5ff35a079e93d279ab161\transformed\coordinatorlayout-1.1.0\res
+com.mdt.android.app-viewpager2-1.0.0-57 C:\Users\sanja\.gradle\caches\8.13\transforms\ec5e90b9a175422d430a7c591759f601\transformed\viewpager2-1.0.0\res
+com.mdt.android.app-ui-tooling-release-58 C:\Users\sanja\.gradle\caches\8.13\transforms\ecc94129e47d9a911466c71037a117eb\transformed\ui-tooling-release\res
+com.mdt.android.app-activity-compose-1.9.2-59 C:\Users\sanja\.gradle\caches\8.13\transforms\f31732556c02692687a3bbbf7a32da89\transformed\activity-compose-1.9.2\res
+com.mdt.android.app-appcompat-resources-1.6.1-60 C:\Users\sanja\.gradle\caches\8.13\transforms\fb807d72655c00c799cf26e34bad8b1a\transformed\appcompat-resources-1.6.1\res
+com.mdt.android.app-graphics-path-1.0.1-61 C:\Users\sanja\.gradle\caches\8.13\transforms\fccf2fad3ecb4fd7e07a9be140aae0a1\transformed\graphics-path-1.0.1\res
+com.mdt.android.app-lifecycle-livedata-core-ktx-2.8.4-62 C:\Users\sanja\.gradle\caches\8.13\transforms\fe3a6960a7a36a2d66b04d1e935892ca\transformed\lifecycle-livedata-core-ktx-2.8.4\res
+com.mdt.android.app-resValues-63 C:\Users\sanja\OneDrive\Documents\New project\app\build\generated\res\resValues\debug
+com.mdt.android.app-packageDebugResources-64 C:\Users\sanja\OneDrive\Documents\New project\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.mdt.android.app-packageDebugResources-65 C:\Users\sanja\OneDrive\Documents\New project\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.mdt.android.app-debug-66 C:\Users\sanja\OneDrive\Documents\New project\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.mdt.android.app-debug-67 C:\Users\sanja\OneDrive\Documents\New project\app\src\debug\res
+com.mdt.android.app-main-68 C:\Users\sanja\OneDrive\Documents\New project\app\src\main\res
