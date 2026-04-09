@@ -1,12 +1,14 @@
 package com.mdt.android
 
 import android.Manifest
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -27,6 +29,13 @@ class MainActivity : ComponentActivity() {
                 var hasPhoneStatePermission by rememberSaveable {
                     mutableStateOf(hasPermission(Manifest.permission.READ_PHONE_STATE))
                 }
+                var hasNotificationPermission by rememberSaveable {
+                    mutableStateOf(
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                            hasPermission(Manifest.permission.POST_NOTIFICATIONS)
+                        } else true
+                    )
+                }
 
                 val callLogLauncher = rememberLauncherForActivityResult(
                     contract = ActivityResultContracts.RequestPermission()
@@ -38,6 +47,18 @@ class MainActivity : ComponentActivity() {
                     contract = ActivityResultContracts.RequestPermission()
                 ) { granted ->
                     hasPhoneStatePermission = granted
+                }
+
+                val notificationLauncher = rememberLauncherForActivityResult(
+                    contract = ActivityResultContracts.RequestPermission()
+                ) { granted ->
+                    hasNotificationPermission = granted
+                }
+
+                LaunchedEffect(Unit) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !hasNotificationPermission) {
+                        notificationLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                    }
                 }
 
                 MdtApp(

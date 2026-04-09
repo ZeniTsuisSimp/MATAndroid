@@ -2,26 +2,44 @@ package com.mdt.android.data
 
 import android.Manifest
 import android.app.ActivityManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.hardware.Sensor
 import android.hardware.SensorManager
+import android.media.MediaDrm
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.net.wifi.WifiManager
 import android.os.BatteryManager
 import android.os.Build
 import android.os.Environment
 import android.os.StatFs
 import android.provider.CallLog
 import android.telephony.TelephonyManager
+import android.util.DisplayMetrics
+import androidx.biometric.BiometricManager
+import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.mdt.android.hasPermission
+import java.io.File
+import java.net.InetAddress
+import java.net.NetworkInterface
 import java.text.DateFormat
 import java.util.Date
+import java.util.UUID
 import kotlin.math.roundToInt
 
 class DiagnosticsRepository(private val context: Context) {
+
+    private val NOTIFICATION_CHANNEL_ID = "battery_alerts"
+    private val TEMP_THRESHOLD = 40.0f // Threshold in Celsius
+
+    init {
+        createNotificationChannel()
+    }
 
     fun loadDashboardData(
         hasCallLogPermission: Boolean,
@@ -96,12 +114,14 @@ class DiagnosticsRepository(private val context: Context) {
             - Device: ${snapshot.device.deviceName}
             - Model: ${snapshot.device.modelNumber}
             - Android: ${snapshot.device.androidVersion}
-            - CPU ABI: ${snapshot.device.cpuAbi}
+            - Processor: ${snapshot.device.processor}
+            - Refresh Rate: ${snapshot.device.refreshRate}
+            - Resolution: ${snapshot.device.displayResolution}
+            - Widevine: ${snapshot.device.widevineLevel}
+            - Rooted: ${snapshot.device.isRooted}
+            - Biometrics: ${snapshot.device.biometricSupport}
             - RAM: ${snapshot.device.totalRam}
             - Internal Storage: ${snapshot.device.totalStorage}
-            - Kernel: ${snapshot.device.kernelVersion}
-            - Hardware: ${snapshot.device.hardware}
-            - Board: ${snapshot.device.board}
             - Phone ID: ${snapshot.device.phoneIdentifier}
 
             Battery
@@ -109,12 +129,15 @@ class DiagnosticsRepository(private val context: Context) {
             - Health: ${snapshot.battery.health}
             - State: ${snapshot.battery.chargingState}
             - Temperature: ${snapshot.battery.temperature}
+            - Voltage: ${snapshot.battery.voltage}
+            - Technology: ${snapshot.battery.technology}
 
             Network
             - Connection: ${snapshot.network.connection}
             - Network Type: ${snapshot.network.networkType}
+            - IP: ${snapshot.network.localIp}
+            - Wi-Fi: ${snapshot.network.wifiSsid}
             - Roaming: ${snapshot.network.roaming}
-            - Status: ${snapshot.network.signalHint}
 
             Storage & Memory
             - Internal Used: ${snapshot.storage.internalUsed}
@@ -123,7 +146,6 @@ class DiagnosticsRepository(private val context: Context) {
             - External Free: ${snapshot.storage.externalFree}
             - External Total: ${snapshot.storage.externalTotal}
             - Call Count: ${snapshot.storage.callLogSummary.totalCalls}
-            - Last Call: ${snapshot.storage.callLogSummary.lastCall}
 
             Sensors
             $sensorText
@@ -149,6 +171,13 @@ class DiagnosticsRepository(private val context: Context) {
             else -> null
         }
 
+        val metrics = context.resources.displayMetrics
+        val refreshRate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            context.display?.refreshRate?.toInt() ?: 0
+        } else {
+            0
+        }
+
         return DeviceProfile(
             deviceName = "${Build.MANUFACTURER} ${Build.MODEL}",
             modelNumber = Build.MODEL,
@@ -162,7 +191,14 @@ class DiagnosticsRepository(private val context: Context) {
             hardware = Build.HARDWARE,
             board = Build.BOARD,
             cameraCount = cameraCount.toString(),
-            phoneIdentifier = phoneId ?: "Permission required / unavailable"
+            phoneIdentifier = phoneId ?: "Permission required / unavailable",
+            displayResolution = "${metrics.widthPixels} x ${metrics.heightPixels}",
+            displayDensity = getDensityString(metrics.densityDpi),
+            refreshRate = if (refreshRate > 0) "$refreshRate Hz" else "Unknown",
+            isRooted = if (checkRootMethod()) "Yes" else "No",
+            widevineLevel = getWidevineLevel(),
+            biometricSupport = getBiometricSupport(),
+            processor = Build.HARDWARE
         )
     }
 
@@ -173,13 +209,21 @@ class DiagnosticsRepository(private val context: Context) {
         val health = batteryIntent?.getIntExtra(BatteryManager.EXTRA_HEALTH, -1) ?: -1
         val status = batteryIntent?.getIntExtra(BatteryManager.EXTRA_STATUS, -1) ?: -1
         val temperature = batteryIntent?.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0)?.div(10f) ?: 0f
+        val voltage = batteryIntent?.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0) ?: 0
+        val technology = batteryIntent?.getStringExtra(BatteryManager.EXTRA_TECHNOLOGY) ?: "Unknown"
         val percent = if (level >= 0 && scale > 0) (level * 100f / scale).roundToInt() else 0
+
+        if (temperature > TEMP_THRESHOLD) {
+            sendBatteryNotification(temperature)
+        }
 
         return BatteryStatus(
             percentage = "$percent%",
             health = batteryHealthText(health),
             chargingState = batteryStatusText(status),
-            temperature = "${temperature} C"
+            temperature = "${temperature} C",
+            voltage = "$voltage mV",
+            technology = technology
         )
     }
 
@@ -203,6 +247,11 @@ class DiagnosticsRepository(private val context: Context) {
             "Permission required"
         }
 
+        val wifiManager = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        val ssid = if (context.hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)) {
+            wifiManager.connectionInfo.ssid.removeSurrounding("\"")
+        } else "Location Permission Required"
+
         return NetworkStatus(
             connection = transport,
             networkType = networkType,
@@ -211,7 +260,9 @@ class DiagnosticsRepository(private val context: Context) {
             } else {
                 "Permission required"
             },
-            signalHint = if (transport == "Disconnected") "No active network" else "Connection detected"
+            signalHint = if (transport == "Disconnected") "No active network" else "Connection detected",
+            localIp = getLocalIpAddress() ?: "Unknown",
+            wifiSsid = if (transport == "Wi-Fi") ssid else "N/A"
         )
     }
 
@@ -284,6 +335,94 @@ class DiagnosticsRepository(private val context: Context) {
 
     private fun formatGb(bytes: Long): String {
         return "${"%.1f".format(bytes / 1024f / 1024f / 1024f)} GB"
+    }
+
+    private fun getDensityString(density: Int): String = when (density) {
+        DisplayMetrics.DENSITY_LOW -> "LDPI"
+        DisplayMetrics.DENSITY_MEDIUM -> "MDPI"
+        DisplayMetrics.DENSITY_HIGH -> "HDPI"
+        DisplayMetrics.DENSITY_XHIGH -> "XHDPI"
+        DisplayMetrics.DENSITY_XXHIGH -> "XXHDPI"
+        DisplayMetrics.DENSITY_XXXHIGH -> "XXXHDPI"
+        else -> "$density DPI"
+    }
+
+    private fun checkRootMethod(): Boolean {
+        val paths = arrayOf(
+            "/system/app/Superuser.apk", "/sbin/su", "/system/bin/su", "/system/xbin/su",
+            "/data/local/xbin/su", "/data/local/bin/su", "/system/sd/xbin/su",
+            "/system/bin/failsafe/su", "/data/local/su"
+        )
+        for (path in paths) {
+            if (File(path).exists()) return true
+        }
+        return false
+    }
+
+    private fun getWidevineLevel(): String {
+        val widevineUuid = UUID(-0x121074568629b532L, -0x35b3dce11963283fL)
+        return try {
+            val mediaDrm = MediaDrm(widevineUuid)
+            val level = mediaDrm.getPropertyString("securityLevel")
+            mediaDrm.close()
+            level
+        } catch (e: Exception) {
+            "Unknown"
+        }
+    }
+
+    private fun getBiometricSupport(): String {
+        val biometricManager = BiometricManager.from(context)
+        return when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG)) {
+            BiometricManager.BIOMETRIC_SUCCESS -> "Available"
+            BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> "No Hardware"
+            BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> "Unavailable"
+            BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> "Not Enrolled"
+            else -> "Unknown"
+        }
+    }
+
+    private fun getLocalIpAddress(): String? {
+        try {
+            val interfaces = NetworkInterface.getNetworkInterfaces()
+            while (interfaces.hasMoreElements()) {
+                val networkInterface = interfaces.nextElement()
+                val addresses = networkInterface.inetAddresses
+                while (addresses.hasMoreElements()) {
+                    val address = addresses.nextElement()
+                    if (!address.isLoopbackAddress && address is InetAddress) {
+                        val ip = address.hostAddress
+                        if (!ip.contains(":")) return ip // IPv4 only for simplicity
+                    }
+                }
+            }
+        } catch (e: Exception) {}
+        return null
+    }
+
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Battery Alerts"
+            val descriptionText = "Notifications for high battery temperature"
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val channel = NotificationChannel(NOTIFICATION_CHANNEL_ID, name, importance).apply {
+                description = descriptionText
+            }
+            val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    private fun sendBatteryNotification(temp: Float) {
+        val builder = NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
+            .setSmallIcon(android.R.drawable.ic_dialog_alert)
+            .setContentTitle("Battery Overheat Warning")
+            .setContentText("Your battery temperature is ${temp}°C. Please consider cooling it down.")
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setAutoCancel(true)
+
+        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.notify(1001, builder.build())
     }
 
     private fun batteryHealthText(health: Int): String = when (health) {

@@ -71,6 +71,7 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.4")
+    implementation("androidx.biometric:biometric-ktx:1.2.0-alpha05")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")

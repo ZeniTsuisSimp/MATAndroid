@@ -22,21 +22,32 @@ data class DeviceProfile(
     val hardware: String,
     val board: String,
     val cameraCount: String,
-    val phoneIdentifier: String
+    val phoneIdentifier: String,
+    val displayResolution: String = "Unknown",
+    val displayDensity: String = "Unknown",
+    val refreshRate: String = "Unknown",
+    val isRooted: String = "Unknown",
+    val widevineLevel: String = "Unknown",
+    val biometricSupport: String = "Unknown",
+    val processor: String = "Unknown"
 )
 
 data class BatteryStatus(
     val percentage: String,
     val health: String,
     val chargingState: String,
-    val temperature: String
+    val temperature: String,
+    val voltage: String = "Unknown",
+    val technology: String = "Unknown"
 )
 
 data class NetworkStatus(
     val connection: String,
     val networkType: String,
     val roaming: String,
-    val signalHint: String
+    val signalHint: String,
+    val localIp: String = "Unknown",
+    val wifiSsid: String = "Unknown"
 )
 
 data class StorageStatus(
