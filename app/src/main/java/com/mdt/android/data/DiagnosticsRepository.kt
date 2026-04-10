@@ -166,8 +166,13 @@ class DiagnosticsRepository(private val context: Context) {
 
         val telephonyManager = ContextCompat.getSystemService(context, TelephonyManager::class.java)
         val phoneId = when {
-            hasPhoneStatePermission && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ->
-                telephonyManager?.imei ?: telephonyManager?.meid
+            hasPhoneStatePermission && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && Build.VERSION.SDK_INT < Build.VERSION_CODES.Q -> {
+                try {
+                    telephonyManager?.imei ?: telephonyManager?.meid
+                } catch (e: SecurityException) {
+                    null
+                }
+            }
             else -> null
         }
 
