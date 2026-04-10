@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="mdt_canvas">#F5EFE3</color>
+    <color name="mdt_surface">#FDF8F1</color>
+    <color name="mdt_forest">#20352B</color>
+    <color name="mdt_ink">#2C3026</color>
+    <color name="mdt_muted">#5F6559</color>
+    <color name="mdt_banner">#E8F1DD</color>
+    <color name="mdt_green">#2E5A3E</color>
+    <color name="mdt_paper">#F7F2EC</color>
+    <color name="mdt_soft_paper">#E6E3DA</color>
+    <color name="mdt_mint">#D5DFC8</color>
+</resources>
